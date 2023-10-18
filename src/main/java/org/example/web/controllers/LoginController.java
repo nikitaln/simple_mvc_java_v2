@@ -8,6 +8,7 @@ import org.example.web.dto.LoginForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,13 +33,13 @@ public class LoginController {
     }
 
     @PostMapping(value = "/auth")
-    public String authenticate(LoginForm loginForm) {
+    public String authenticate(LoginForm loginForm) throws BookShelfLoginException {
         if (loginService.authenticate(loginForm)) {
             logger.info("login is CORRECT");
             return "redirect:/books/shelf";
         } else {
             logger.info("login is FAIL");
-            return new BookShelfLoginException("invalid username or password");
+            throw new BookShelfLoginException("invalid username or password");
         }
     }
 }

@@ -1,7 +1,15 @@
 package org.example.app.exceptions;
 
-public class BookShelfLoginException {
+public class BookShelfLoginException extends Exception {
 
-    public BookShelfLoginException(String invalidUsernameOrPassword) {
+    private final String message;
+
+    public BookShelfLoginException(String message) {
+        this.message = message;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
     }
 }
