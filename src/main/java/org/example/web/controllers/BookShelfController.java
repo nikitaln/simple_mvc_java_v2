@@ -42,6 +42,7 @@ public class BookShelfController {
     @PostMapping(value = "/save")
     public String save(@Valid Book book, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            logger.info("ERROR field 'size' must be digit and less 4 symbol");
             model.addAttribute("book", book);
             model.addAttribute("bookIdToRemove", new BookIdToRemove());
             model.addAttribute("bookList", bookService.getAllBooks());
@@ -58,7 +59,7 @@ public class BookShelfController {
     @PostMapping(value = "/remove")
     public String remove(@Valid BookIdToRemove bookIdToRemove, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!");
+            logger.info("ERROR removed empty value or ID not found");
             model.addAttribute("book", new Book());
             model.addAttribute("bookList", bookService.getAllBooks());
             return "book_shelf";
