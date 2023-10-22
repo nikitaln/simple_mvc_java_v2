@@ -15,7 +15,7 @@ public class DbConfig {
     public DataSource dataSource() {
         return new EmbeddedDatabaseBuilder()
                 .generateUniqueName(false)
-                .setName("book_storage")
+                .setName("book_store")
                 .setType(EmbeddedDatabaseType.H2)
                 .addDefaultScripts()
                 .setScriptEncoding("UTF-8")
