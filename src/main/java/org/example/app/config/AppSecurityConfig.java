@@ -34,6 +34,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.headers().frameOptions().disable(); //безопастность пропустит рендеринг БД
         http
                 .csrf().disable()
                 .authorizeRequests()
